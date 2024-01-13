@@ -1,0 +1,22 @@
+INSERT INTO menu (product_name, size, coffee_drink, price)
+VALUES ( 'Espresso', 30, true, 120),
+			 ( 'Americano', 190, true, 250),
+			 ( 'Latte', 200, true, 300),
+			 ( 'Latte', 300, true, 380),
+			 ( 'Cppuccino', 200, true, 280),
+			 ( 'Cappuccino', 300, true, 350),
+			 ( 'Flat white', 250, true, 380),
+			 ( 'Mocha', 250, true, 420),
+			 ( 'Raf coffee', 300, true, 400),
+			 ( 'Glace', 190, true, 350),
+			 ( 'Ice Tea', 250, false, 280),
+			 ( 'Green Tea', 200, false, 250),
+			 ( 'Black Tea', 200, false, 250),
+			 ( 'Citrus Tea', 600, false, 380),
+			 ( 'Lemonade with beries', 250, false, 300),
+			 ( 'Lemonade with citrus', 250, false, 300),
+			 ( 'Smoothie', 250, false, 320),
+			 ( 'Still Water', 500, false, 100),
+			 ( 'Sparkling Water', 500, false, 100),
+			 ( 'Cola', 330, false, 180);
+       ('Matcha Tea', 200, false, 300);
