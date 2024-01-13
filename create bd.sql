@@ -62,7 +62,7 @@ CREATE TABLE orders (
     del_id serial PRIMARY KEY NOT NULL,
 		ord_num INTEGER REFERENCES orders(order_id),
 		address VARCHAR(60) NOT NULL,
-		courier_name VARCHAR(60) NOT NULL
+		courier_name INTEGER REFERENCES staff(staff_id)
 		);
 		
 --создание таблицы supply и соединение её с ingredients и providers 
