@@ -2,8 +2,9 @@
 CREATE TABLE menu (
    menu_id serial PRIMARY KEY NOT NULL,
 	 m_product_name VARCHAR(50) NOT NULL,
-	 m_size INTEGER CHECK (size >= 0),
-	 m_coffee_drink BOOLEAN DEFAULT 1
+	 m_size INTEGER CHECK (size >= 0) NOT NULL,
+	 m_coffee_drink BOOLEAN DEFAULT 1,
+	 m_price numeric(10,2) NOT NULL
 	 );
  
  --создание таблицы providers
@@ -49,20 +50,17 @@ CREATE TABLE ingredients (
 --создание таблицы orders и соединение её с clients и staff
 CREATE TABLE orders (
    order_id serial PRIMARY KEY NOT NULL,
-	 date_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	 product_id INTEGER REFERENCES menu(id),
-	 cli_id INTEGER REFERENCES clients(cl_id),
-	 barista_id INTEGER REFERENCES staff(staff_id), 
-	 admin_id INTEGER REFERENCES staff(staff_id),
-	 price_ord numeric(10,2)
+	 ord_date_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	 ord_cli_id INTEGER REFERENCES clients(cl_id),
+	 ord_price numeric(10,2)
 	 );
 	
 --создание таблицы delivery и соединение её с orders	 
  CREATE TABLE delivery (
     del_id serial PRIMARY KEY NOT NULL,
-		ord_num INTEGER REFERENCES orders(order_id),
-		address VARCHAR(60) NOT NULL,
-		courier_name INTEGER REFERENCES staff(staff_id)
+		del_ord_num INTEGER REFERENCES orders(order_id),
+		del_address VARCHAR(60) NOT NULL,
+		del_courier_name INTEGER REFERENCES staff(staff_id)
 		);
 		
 --создание таблицы supply и соединение её с ingredients и providers 
@@ -70,13 +68,13 @@ CREATE TABLE supply (
    sup_id serial PRIMARY KEY NOT NULL,
 	 sup_date DATE DEFAULT CURRENT_DATE NOT NULL,
 	 sup_ingredient INTEGER REFERENCES ingredients(ing_id) NOT NULL,
-	 quantity INTEGER NOT NULL,
+	 sup_quantity INTEGER NOT NULL,
 	 ); 
 	 
  CREATE TABLE order_list (
-   id_ord_list SERIAL PRIMARY KEY,
+   ord_list_id SERIAL PRIMARY KEY,
 	 ord_id INTEGER NOT NULL REFERENCES orders(order_id), 
-	 prod_id INTEGER NOT NULL REFERENCES menu(product_name)
+	 prod_id INTEGER NOT NULL REFERENCES menu(menu_id)
 	 );
 	 
 	 CREATE TABLE order_staff (
