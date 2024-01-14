@@ -1,17 +1,17 @@
 --создание таблицы menu 
 CREATE TABLE menu (
-   id serial PRIMARY KEY NOT NULL,
-	 product_name VARCHAR(50) NOT NULL,
-	 size INTEGER CHECK (size >= 0),
-	 coffee_drink BOOLEAN DEFAULT true
+   menu_id serial PRIMARY KEY NOT NULL,
+	 m_product_name VARCHAR(50) NOT NULL,
+	 m_size INTEGER CHECK (size >= 0),
+	 m_coffee_drink BOOLEAN DEFAULT 1
 	 );
  
  --создание таблицы providers
 CREATE TABLE providers (
    prov_id serial PRIMARY KEY NOT NULL,
 	 prov_name VARCHAR(60) NOT NULL,
-	 address VARCHAR(60) NOT NULL,
-	 phone_number VARCHAR(15) UNIQUE
+	 prov_address VARCHAR(60) NOT NULL,
+	 prov_phone_number VARCHAR(15) UNIQUE
 	 );
 
 --создание таблицы clients 
@@ -20,8 +20,8 @@ CREATE TABLE clients (
 	 cl_fname VARCHAR(20) NOT NULL,
 	 cl_lname VARCHAR(20) NOT NULL DEFAULT ' ',
 	 cl_phone_number VARCHAR(15) NOT NULL UNIQUE,
-	 birthday DATE NULL,
-	 sale INTEGER CHECK (sale >= 0 AND sale <= 100)
+	 cl_birthday DATE NULL,
+	 cl_sale INTEGER CHECK (sale >= 0 AND sale <= 100)
 	 );
 	 
 --создание таблицы staff 
@@ -29,21 +29,21 @@ CREATE TABLE staff (
    staff_id serial PRIMARY KEY NOT NULL,
 	 staff_fname VARCHAR(20) NOT NULL,
 	 staff_lname VARCHAR(20) NOT NULL,
-	 job_title VARCHAR(30) NOT NULL,
-	 birthday DATE NOT NULL,
-	 phone_number VARCHAR(15) UNIQUE NOT NULL,
-	 pay_rate VARCHAR(10) NOT NUll 
+	 st_job_title VARCHAR(30) NOT NULL,
+	 st_birthday DATE NOT NULL,
+	 st_phone_number VARCHAR(15) UNIQUE NOT NULL,
+	 st_pay_rate VARCHAR(10) NOT NUll 
 	 ); 
 	 
 --cоздание таблицы ingredients и соединение её с menu
 CREATE TABLE ingredients (
    ing_id serial PRIMARY KEY NOT NULL,
 	 ing_name VARCHAR(50) NOT NULL,
-	 volume VARCHAR(20) DEFAULT 1,
-	 manufacturer_name VARCHAR(60) DEFAULT 'unknown',
-	 manufacturer_address VARCHAR(60) DEFAULT 'unknown',
-	 price numeric(10,2),
-	 provider_id INTEGER REFERENCES providers(prov_id)
+	 ing_volume VARCHAR(20) DEFAULT 1,
+	 ing_manufacturer_name VARCHAR(60) DEFAULT 'unknown',
+	 ing_manufacturer_address VARCHAR(60) DEFAULT 'unknown',
+	 ing_price numeric(10,2),
+	 ing_provider_id INTEGER REFERENCES providers(prov_id)
 	);		
 	 
 --создание таблицы orders и соединение её с clients и staff
@@ -69,21 +69,20 @@ CREATE TABLE orders (
 CREATE TABLE supply (
    sup_id serial PRIMARY KEY NOT NULL,
 	 sup_date DATE DEFAULT CURRENT_DATE NOT NULL,
-	 product INTEGER REFERENCES ingredients(ing_id) NOT NULL,
+	 sup_ingredient INTEGER REFERENCES ingredients(ing_id) NOT NULL,
 	 quantity INTEGER NOT NULL,
-	 provider INTEGER NOT NULL REFERENCES providers(prov_id)
 	 ); 
 	 
  CREATE TABLE order_list (
-   list_id SERIAL PRIMARY KEY,
-	 order_listid INTEGER REFERENCES orders(order_id), 
-	 product_id INTEGER REFERENCES menu(product_name)
+   id_ord_list SERIAL PRIMARY KEY,
+	 ord_id INTEGER NOT NULL REFERENCES orders(order_id), 
+	 prod_id INTEGER NOT NULL REFERENCES menu(product_name)
 	 );
 	 
 	 CREATE TABLE order_staff (
-   ord_st serial PRIMARY KEY NOT NULL,
-	 id_ord INTEGER REFERENCES orders(order_id),
-	 id_staff INTEGER REFERENCES staff(staff_id)
+   id_ord_st serial PRIMARY KEY NOT NULL,
+	 id_ord INTEGER NOT NULL REFERENCES orders(order_id),
+	 id_staff INTEGER NOT NULL REFERENCES staff(staff_id)
 	 );
 
 	 
