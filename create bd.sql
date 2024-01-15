@@ -2,8 +2,8 @@
 CREATE TABLE menu (
    menu_id serial PRIMARY KEY NOT NULL,
 	 m_product_name VARCHAR(50) NOT NULL,
-	 m_size INTEGER CHECK (size >= 0) NOT NULL,
-	 m_coffee_drink BOOLEAN DEFAULT 1,
+	 m_size INTEGER CHECK (m_size >= 0),
+	 m_coffee_drink BOOLEAN DEFAULT true,
 	 m_price numeric(10,2) NOT NULL
 	 );
  
@@ -22,7 +22,7 @@ CREATE TABLE clients (
 	 cl_lname VARCHAR(20) NOT NULL DEFAULT ' ',
 	 cl_phone_number VARCHAR(15) NOT NULL UNIQUE,
 	 cl_birthday DATE NULL,
-	 cl_sale INTEGER CHECK (sale >= 0 AND sale <= 100)
+	 cl_sale INTEGER CHECK (cl_sale >= 0 AND cl_sale <= 100)
 	 );
 	 
 --создание таблицы staff 
@@ -68,7 +68,7 @@ CREATE TABLE supply (
    sup_id serial PRIMARY KEY NOT NULL,
 	 sup_date DATE DEFAULT CURRENT_DATE NOT NULL,
 	 sup_ingredient INTEGER REFERENCES ingredients(ing_id) NOT NULL,
-	 sup_quantity INTEGER NOT NULL,
+	 sup_quantity INTEGER NOT NULL
 	 ); 
 	 
  CREATE TABLE order_list (
