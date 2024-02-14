@@ -51,8 +51,7 @@ CREATE TABLE ingredients (
 CREATE TABLE orders (
    order_id serial PRIMARY KEY NOT NULL,
 	 ord_date_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	 ord_cli_id INTEGER REFERENCES clients(cl_id),
-	 ord_price numeric(10,2)
+	 ord_cli_id INTEGER REFERENCES clients(cl_id)
 	 );
 	
 --создание таблицы delivery и соединение её с orders	 
@@ -74,7 +73,8 @@ CREATE TABLE supply (
  CREATE TABLE order_list (
    ord_list_id SERIAL PRIMARY KEY,
 	 ord_id INTEGER NOT NULL REFERENCES orders(order_id), 
-	 prod_id INTEGER NOT NULL REFERENCES menu(menu_id)
+	 prod_id INTEGER NOT NULL REFERENCES menu(menu_id),
+	 prod_quantity INTEGER NOT NULL DEFAULT 1
 	 );
 	 
 	 CREATE TABLE order_staff (
