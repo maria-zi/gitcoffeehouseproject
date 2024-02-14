@@ -1,0 +1,16 @@
+INSERT INTO delivery (del_ord_num, del_address)
+VALUES (16, 'Test Region, Test City, Programmer Street, 123'),
+       (17, 'Test Region, Test City, Test Street, 456'),
+			 (27, 'Test Region, Test City, Programmer Street, 123'),
+			 (29, 'Test Region, Test City, Programming Lane, 321'),
+			 (45, 'Test Region, Testopolis, Script Avenue, 3'),
+			 (53, 'Test Region, Test City, Programming Lane, 321'),
+			 (61, 'Test Region, Testingville, Function Street, 12, D'),
+			 (97, 'Test Region, Test City, Tester Avenue, 789'),
+			 (100, 'Test Region, Testshire, Compiler Road, 8'),
+			 (114, 'Test Region, Test City, Tester Avenue, 789'),
+			 (146, 'Test Region, Test City, Tester Avenue, 789'),
+			 (175, 'Test Region, Test City, Tester Avenue, 789'),
+			 (211, 'Test Region, Testshire, Compiler Road, 8'),
+			 (254, 'Test Region, Testshire, Compiler Road, 8'),
+			 (259, 'Test Region, Test City, Tester Avenue, 789');
